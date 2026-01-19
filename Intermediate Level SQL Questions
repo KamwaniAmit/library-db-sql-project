@@ -1,10 +1,7 @@
 ## 📌 Intermediate Level SQL Questions
 
-#### **Question 1**  
+*Question 1*
 List all **members** who have **currently borrowed** books (i.e., `ReturnDate IS NULL`). Show Member Name, Book Title, and Due Date.
 
-Expected Answer:
-#	MemberName	    BookTitle	                              DueDate
-1	Bob Smith	   1984	                                    5/17/2024
-2	Clara Davis	    Harry Potter & the Philosopher’s Stone5/24/2024
-3	David Wilson    Murder on the Orient Express	          5/26/2024
+*Question 2*
+Find the author(s) who have written the most books in the library. Show Author Name and number of books.
