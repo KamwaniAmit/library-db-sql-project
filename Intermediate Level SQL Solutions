@@ -1,0 +1,56 @@
+Question 1
+
+SELECT 
+    m.FirstName + ' ' + m.LastName AS MemberName,
+    b.Title AS BookTitle,
+    l.DueDate
+FROM Loans l
+JOIN Members m   ON l.MemberID = m.MemberID
+JOIN Books b     ON l.BookID   = b.BookID
+WHERE l.ReturnDate IS NULL
+ORDER BY l.DueDate;
+
+Question 2
+
+SELECT 
+    a.FirstName + ' ' + a.LastName AS AuthorName,
+    COUNT(b.BookID) AS TotalBooks
+FROM Authors a
+JOIN Books b ON a.AuthorID = b.AuthorID
+GROUP BY a.AuthorID, a.FirstName, a.LastName
+HAVING COUNT(b.BookID) = (
+                            SELECT MAX(BooksCount)
+                            FROM (
+                                SELECT COUNT(*) AS BooksCount
+                                FROM Books
+                                GROUP BY AuthorID
+                            ) AS cnt
+                          );
+
+Question 3
+
+SELECT 
+    b.Title,
+    a.FirstName + ' ' + a.LastName AS AuthorName
+FROM Books b
+JOIN Authors a ON b.AuthorID = a.AuthorID
+LEFT JOIN Loans l ON b.BookID = l.BookID
+WHERE l.LoanID IS NULL;      -- No entry in Loans table
+
+Question 4
+
+SELECT 
+    m.MemberID,
+    m.FirstName + ' ' + m.LastName AS MemberName,
+    COUNT(l.LoanID) AS TotalBorrowed
+FROM Members m
+JOIN Loans l ON m.MemberID = l.MemberID
+GROUP BY m.MemberID, m.FirstName, m.LastName
+HAVING COUNT(l.LoanID) >= 2
+ORDER BY TotalBorrowed DESC;
+
+Question 5
+
+UPDATE Loans
+SET DueDate = DATEADD(DAY, 7, DueDate)
+WHERE ReturnDate IS NULL;
