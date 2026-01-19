@@ -1,7 +1,16 @@
 ## 📌 Intermediate Level SQL Questions
 
-*Question 1*
+Question 1
 List all **members** who have **currently borrowed** books (i.e., `ReturnDate IS NULL`). Show Member Name, Book Title, and Due Date.
 
-*Question 2*
+Question 2
 Find the author(s) who have written the most books in the library. Show Author Name and number of books.
+
+Question 3
+Display all books that have NEVER been borrowed. Show Book Title and Author Name.
+
+Question 4
+For each member, calculate the total number of books they have borrowed (including returned & current). List only members with ≥ 2 borrowings.
+
+Question 5
+Extend the due date of all current loans (where ReturnDate IS NULL) by 7 more days.
